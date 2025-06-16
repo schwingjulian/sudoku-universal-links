@@ -1,11 +1,13 @@
+{
   "applinks": {
     "apps": [],
     "details": [
       {
         "appID": "N8BKM2V92T.sj.Sudoku",
-        "paths": [ "/share/*" ]
+        "paths": [
+          "/u/share/*"
+        ]
       }
     ]
   }
 }
-
