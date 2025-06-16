@@ -10,6 +10,25 @@
   <style>
     body { background-color: #f9fafb; }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const time = urlParams.get('time');
+      const errors = urlParams.get('errors');
+      const id = urlParams.get('id');
+
+      function formatTime(seconds) {
+        if (!seconds) return "-";
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      document.getElementById("timeValue").innerText = formatTime(parseInt(time));
+      document.getElementById("errorsValue").innerText = errors ?? "-";
+      document.getElementById("levelValue").innerText = "Shared";
+    });
+  </script>
 </head>
 <body class="flex items-center justify-center min-h-screen">
   <div class="max-w-md text-center p-6 bg-white rounded-lg shadow-lg">
@@ -17,9 +36,9 @@
     <p class="text-gray-600 mb-4">Can you beat this Sudoku highscore?</p>
 
     <div class="bg-gray-100 rounded-lg p-4 mb-6">
-      <p class="text-gray-700"><strong>Level:</strong> Extreme</p>
-      <p class="text-gray-700"><strong>Time:</strong> 01:37</p>
-      <p class="text-gray-700"><strong>Errors:</strong> 1</p>
+      <p class="text-gray-700"><strong>Level:</strong> <span id="levelValue">-</span></p>
+      <p class="text-gray-700"><strong>Time:</strong> <span id="timeValue">-</span></p>
+      <p class="text-gray-700"><strong>Errors:</strong> <span id="errorsValue">-</span></p>
     </div>
 
     <a href="https://apps.apple.com/app/id6745489365" class="inline-block bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">Accept the Challenge</a>
