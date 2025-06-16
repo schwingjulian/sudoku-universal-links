@@ -15,7 +15,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       const time = urlParams.get('time');
       const errors = urlParams.get('errors');
-      const id = urlParams.get('id');
+      const difficulty = urlParams.get('difficulty');
 
       function formatTime(seconds) {
         if (!seconds) return "-";
@@ -24,9 +24,19 @@
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
       }
 
+      function formatDifficulty(diff) {
+        switch (diff) {
+          case "easy": return "Easy";
+          case "medium": return "Medium";
+          case "hard": return "Hard";
+          case "extreme": return "Extreme";
+          default: return "-";
+        }
+      }
+
       document.getElementById("timeValue").innerText = formatTime(parseInt(time));
       document.getElementById("errorsValue").innerText = errors ?? "-";
-      document.getElementById("levelValue").innerText = "Shared";
+      document.getElementById("levelValue").innerText = formatDifficulty(difficulty);
     });
   </script>
 </head>
